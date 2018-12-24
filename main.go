@@ -1,11 +1,10 @@
 package main
 
-import (
-	"time"
-	"log"
-	"OkexApi/okex"
-)
-
 func main() {
-	log.Print(okex.Candles("BTC-USDT", time.Time{}))
+	//log.Print(okex.Instruments())
+	//log.Print(okex.Depths("BTC-USDT"))
+	//log.Print(okex.Tickers())
+	//log.Print(okex.Depths("BTC-USDT"))
+	//log.Print(okex.Trades("BTC-USDT"))
+	//log.Print(okex.Candles("BTC-USDT", time.Time{}))
 }

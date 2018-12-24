@@ -8,15 +8,6 @@ import (
 	"fmt"
 )
 
-type Candle []struct {
-	Close  string    `json:"close"`
-	High   string    `json:"high"`
-	Low    string    `json:"low"`
-	Open   string    `json:"open"`
-	Time   time.Time `json:"time"`
-	Volume string    `json:"volume"`
-}
-
 var okApi = "https://www.okex.com"
 
 func get(url string, inter interface{}) {
@@ -38,6 +29,61 @@ func get(url string, inter interface{}) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+/**
+ * 获取币对信息
+ */
+func Instruments() Instrument {
+	var api = "/api/spot/v3/instruments"
+	var url = okApi + api
+	var inst Instrument
+	get(url, &inst)
+	return inst
+}
+
+/**
+ * 获取深度数据
+ */
+func Depths(id string) Depth {
+	var api = fmt.Sprintf("/api/spot/v3/instruments/%s/book", id)
+	var url = okApi + api
+	var depth Depth
+	get(url, &depth)
+	return depth
+}
+
+/**
+ * 获取全部ticker信息
+ */
+func Tickers() Ticker {
+	var api = "/api/spot/v3/instruments/ticker"
+	var url = okApi + api
+	var ticker Ticker
+	get(url, &ticker)
+	return ticker
+}
+
+/**
+ * 获取某个ticker信息
+ */
+func TickerOne(id string) Ticker {
+	var api = fmt.Sprintf("/api/spot/v3/instruments/%s/ticker", id)
+	var url = okApi + api
+	var ticker Ticker
+	get(url, &ticker)
+	return ticker
+}
+
+/**
+ * 获取成交数据
+ */
+func Trades(id string) Trade {
+	var api = fmt.Sprintf("/api/spot/v3/instruments/%s/trades", id)
+	var url = okApi + api
+	var trade Trade
+	get(url, &trade)
+	return trade
 }
 
 /**
@@ -70,6 +116,5 @@ func Candles(category string, st time.Time) Candle {
 
 	var cand Candle
 	get(url, &cand)
-
 	return cand
 }
