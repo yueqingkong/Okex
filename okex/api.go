@@ -40,6 +40,9 @@ func get(url string, inter interface{}) {
 	}
 }
 
+/**
+ * 获取K线数据
+ */
 func Candles(category string, st time.Time) Candle {
 	var start string
 	var end string
