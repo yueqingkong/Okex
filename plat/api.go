@@ -1,11 +1,11 @@
 package plat
 
 import (
-	"net/http"
-	"log"
-	"time"
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+	"time"
 )
 
 var okApi = "https://www.okex.com"
@@ -16,7 +16,8 @@ func get(url string, inter interface{}) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	res.Header.Set("Content-Type", "application/json")
+	res.Header.Set("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36")
+	//res.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	var resp *http.Response
 	resp, err = client.Do(res)
