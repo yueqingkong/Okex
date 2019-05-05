@@ -1,5 +1,10 @@
 package main
 
+import (
+	"Okex/plat"
+	"log"
+)
+
 func main() {
 	// 现货
 	// spot:= plat.NewOKex()
@@ -30,4 +35,6 @@ func main() {
 	// log.Print(future.Times("btc"))
 	// log.Print(future.SetTimes("btc","BTC-USD-190628","long",10))
 	// log.Print(future.Ledger("eos"))
+	// log.Print(future.Instruments())
+	// log.Print(future.Ticker("EOS-USD-190517"))
 }

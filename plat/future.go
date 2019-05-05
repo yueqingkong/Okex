@@ -214,13 +214,13 @@ func (future OKexFuture) Fills(symbol string, orderid string) FutureFill {
 }
 
 // 获取合约信息
-func (future OKexFuture) Instruments() FutureInstrument {
+func (future OKexFuture) Instruments() []FutureInstrument {
 	var api = "/api/futures/v3/instruments"
 	var url = okApi + api
 
-	var instrument FutureInstrument
-	Get(url, future.header("get", api, nil), &instrument)
-	return instrument
+	var instruments []FutureInstrument
+	Get(url, future.header("get", api, nil), &instruments)
+	return instruments
 }
 
 // 获取深度数据
@@ -244,13 +244,13 @@ func (future OKexFuture) TickerAll() FutureTickers {
 }
 
 // 获取某个ticker信息
-func (future OKexFuture) TickerSymbol(symbol string) FutureTickerSymbol {
+func (future OKexFuture) Ticker(symbol string) FutureTicker {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/ticker", symbol)
 	var url = okApi + api
 
-	var tickers FutureTickerSymbol
-	Get(url, future.header("get", api, nil), &tickers)
-	return tickers
+	var ticker FutureTicker
+	Get(url, future.header("get", api, nil), &ticker)
+	return ticker
 }
 
 // 获取成交数据

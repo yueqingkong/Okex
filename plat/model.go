@@ -395,7 +395,7 @@ type FutureOrderInfo struct {
 	Leverage     string    `json:"leverage"`
 }
 
-type FutureTickerSymbol struct {
+type FutureTicker struct {
 	InstrumentID string    `json:"instrument_id"`
 	Last         string    `json:"last"`
 	BestBid      string    `json:"best_bid"`
