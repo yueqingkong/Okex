@@ -3,6 +3,9 @@ package main
 func main() {
 	// 现货
 	// spot:= plat.NewOKex()
+	// 初始化Key
+	// spot.InitKeys("123","www","wwwww")
+
 	// log.Print(spot.Instruments())
 	// log.Print(spot.Depths("eth"))
 	// log.Print(spot.Tickers())

@@ -20,9 +20,9 @@ var (
 	}
 
 	// 申请的平台key
-	apiKey     = ""
-	secretKey  = ""
-	passphrase = ""
+	ApiKey     = ""
+	SecretKey  = ""
+	Passphrase = ""
 )
 
 type OK struct {
@@ -30,6 +30,15 @@ type OK struct {
 
 func NewOKex() OK {
 	return OK{}
+}
+
+/**
+ * 初始化 Key
+ */
+func (ok OK) InitKeys(api string, secret string, phrase string) {
+	ApiKey = api
+	SecretKey = secret
+	Passphrase = phrase
 }
 
 func (ok OK) header(request string, path string, body interface{}) map[string]string {
@@ -41,7 +50,7 @@ func (ok OK) header(request string, path string, body interface{}) map[string]st
 
 	timestamp := IsoTime(time.Now())
 	comnination := timestamp + strings.ToUpper(request) + path + paramString
-	sign, err := HmacSha256Base64Signer(comnination, secretKey)
+	sign, err := HmacSha256Base64Signer(comnination, SecretKey)
 	if err != nil {
 		log.Print("签名失败", err)
 	}
@@ -50,10 +59,10 @@ func (ok OK) header(request string, path string, body interface{}) map[string]st
 	headerMap[ACCEPT] = APPLICATION_JSON
 	headerMap[CONTENT_TYPE] = APPLICATION_JSON_UTF8
 	headerMap[COOKIE] = LOCALE + ENGLISH
-	headerMap[OK_ACCESS_KEY] = apiKey
+	headerMap[OK_ACCESS_KEY] = ApiKey
 	headerMap[OK_ACCESS_SIGN] = sign
 	headerMap[OK_ACCESS_TIMESTAMP] = timestamp
-	headerMap[OK_ACCESS_PASSPHRASE] = passphrase
+	headerMap[OK_ACCESS_PASSPHRASE] = Passphrase
 	return headerMap
 }
 
@@ -222,7 +231,7 @@ func (ok OK) OrderInfo(symbol string, orderId string) OrderInfo {
  * 获取成交明细
  */
 func (ok OK) Deals(symbol string, orderId string) Deal {
-	var api = fmt.Sprintf("/api/spot/v3/fills?order_id=%s&instrument_id=%s",orderId,symbolMap[symbol])
+	var api = fmt.Sprintf("/api/spot/v3/fills?order_id=%s&instrument_id=%s", orderId, symbolMap[symbol])
 	var url = okApi + api
 
 	var deal Deal

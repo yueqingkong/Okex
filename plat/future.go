@@ -55,7 +55,7 @@ func (future OKexFuture) header(request string, path string, body interface{}) m
 
 	timestamp := IsoTime(time.Now())
 	comnination := timestamp + strings.ToUpper(request) + path + paramString
-	sign, err := HmacSha256Base64Signer(comnination, secretKey)
+	sign, err := HmacSha256Base64Signer(comnination, SecretKey)
 	if err != nil {
 		log.Print("签名失败", err)
 	}
@@ -64,10 +64,10 @@ func (future OKexFuture) header(request string, path string, body interface{}) m
 	headerMap[ACCEPT] = APPLICATION_JSON
 	headerMap[CONTENT_TYPE] = APPLICATION_JSON_UTF8
 	headerMap[COOKIE] = LOCALE + ENGLISH
-	headerMap[OK_ACCESS_KEY] = apiKey
+	headerMap[OK_ACCESS_KEY] = ApiKey
 	headerMap[OK_ACCESS_SIGN] = sign
 	headerMap[OK_ACCESS_TIMESTAMP] = timestamp
-	headerMap[OK_ACCESS_PASSPHRASE] = passphrase
+	headerMap[OK_ACCESS_PASSPHRASE] = Passphrase
 	return headerMap
 }
 
