@@ -8,9 +8,6 @@ import (
 	"time"
 )
 
-type OKexFuture struct {
-}
-
 var (
 	// 获取Token 交易对
 	_symbolMap = map[string]string{
@@ -41,6 +38,13 @@ const (
 
 	ENGLISH = "en_US"
 )
+
+type OKexFuture struct {
+}
+
+func NewOKexFuture() OKexFuture {
+	return OKexFuture{}
+}
 
 func (future OKexFuture) header(request string, path string, body interface{}) map[string]string {
 	var paramString string
@@ -117,13 +121,19 @@ func (future OKexFuture) Times(symbol string) FutureTimes {
 	return times
 }
 
-// 设定合约币种杠杆倍数
-func (future OKexFuture) SetTimes(symbol string) FutureTimes {
+/**
+ * 设定合约币种杠杆倍数
+ * direct (short|long)
+ * time 倍数(10|20)
+ */
+func (future OKexFuture) SetTimes(symbol string,id string,direct string,time int32) FutureTimes {
 	var api = fmt.Sprintf("/api/futures/v3/accounts/%s/leverage", symbol)
 	var url = okApi + api
 
 	param := make(map[string]interface{}, 0)
-	param["leverage"] = 10
+	param["leverage"] = time
+	param["instrument_id"] = id
+	param["direction"] = direct
 	param["currency"] = symbol
 
 	var times FutureTimes

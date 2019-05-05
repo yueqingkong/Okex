@@ -19,6 +19,7 @@ var (
 		"eos": "EOS-USDT",
 	}
 
+	// 申请的平台key
 	apiKey     = ""
 	secretKey  = ""
 	passphrase = ""

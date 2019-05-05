@@ -1,14 +1,9 @@
 package main
 
-import (
-	"Okex/plat"
-	"log"
-)
-
 func main() {
 	// 现货
-	spot:= plat.NewOKex()
-	log.Print(spot.Instruments())
+	// spot:= plat.NewOKex()
+	// log.Print(spot.Instruments())
 	// log.Print(spot.Depths("eth"))
 	// log.Print(spot.Tickers())
 	// log.Print(spot.Depths("btc"))
@@ -24,5 +19,12 @@ func main() {
 
 
 	// 合约
-	//log.Print(api.FutureCandle("","btc", time.Time{}))
+	// future:= plat.NewOKexFuture()
+	// log.Print(future.Position())
+	// log.Print(future.InstrumenPosition("EOS-USD-190628"))
+	// log.Print(future.Account())
+	// log.Print(future.SymbolAccount("btc"))
+	// log.Print(future.Times("btc"))
+	// log.Print(future.SetTimes("btc","BTC-USD-190628","long",10))
+	// log.Print(future.Ledger("eos"))
 }
