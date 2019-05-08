@@ -80,7 +80,7 @@ type FuturePriceLimit struct {
 }
 
 type FutureMarkPrice struct {
-	MarkPrice    float32   `json:"mark_price"`
+	MarkPrice    string    `json:"mark_price"`
 	InstrumentID string    `json:"instrument_id"`
 	Timestamp    time.Time `json:"timestamp"`
 }
@@ -423,7 +423,7 @@ type Ledger struct {
 	Amount    string    `json:"amount"`
 	Balance   string    `json:"balance"`
 	Type      string    `json:"type"`
-	Details []struct {
+	Details   []struct {
 		InstrumentID string `json:"instrument_id"`
 		OrderID      string `json:"order_id"`
 		ProductID    string `json:"product_id"`

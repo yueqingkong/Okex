@@ -1,10 +1,5 @@
 package main
 
-import (
-	"Okex/plat"
-	"log"
-)
-
 func main() {
 	// 现货
 	// spot:= plat.NewOKex()
@@ -37,4 +32,5 @@ func main() {
 	// log.Print(future.Ledger("eos"))
 	// log.Print(future.Instruments())
 	// log.Print(future.Ticker("EOS-USD-190517"))
+	// log.Print(future.MarkPrice("BTC-USD-190628"))
 }
