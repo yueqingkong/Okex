@@ -395,17 +395,6 @@ type FutureOrderInfo struct {
 	Leverage     string    `json:"leverage"`
 }
 
-type FutureTicker struct {
-	InstrumentID string    `json:"instrument_id"`
-	Last         string    `json:"last"`
-	BestBid      string    `json:"best_bid"`
-	BestAsk      string    `json:"best_ask"`
-	High24H      string    `json:"high_24h"`
-	Low24H       string    `json:"low_24h"`
-	Volume24H    string    `json:"volume_24h"`
-	Timestamp    time.Time `json:"timestamp"`
-}
-
 type Trades []struct {
 	TradeID   string    `json:"trade_id"`
 	Side      string    `json:"side"`
