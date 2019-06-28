@@ -359,14 +359,14 @@ func (future OKexFuture) OpenInterest(symbol string) FutureOpenInterest {
 }
 
 // 获取当前限价
-func (future OKexFuture) PriceLimit(symbol string) FuturePriceLimit {
+func (future OKexFuture) PriceLimit(symbol string) (FuturePriceLimit, error) {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/price_limit", symbol)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var limit FuturePriceLimit
-	Get(url, future.header("get", api, nil), &limit)
-	return limit
+	err := Get(url, future.header("get", api, nil), &limit)
+	return limit, err
 }
 
 // 获取当前限价

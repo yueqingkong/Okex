@@ -17,7 +17,7 @@ func Get(url string, headers map[string]string, inter interface{}) error{
 	resp, err := resty.SetTimeout(time.Minute * 1).R().
 		SetHeaders(headers).
 		Get(url)
-	log.Print("[Get]",resp.String())
+	// log.Print("[Get]",resp.String())
 
 	err = json.Unmarshal(resp.Body(), &inter)
 	if err != nil {
@@ -37,7 +37,7 @@ func Post(url string, headers map[string]string, params interface{}, inter inter
 		SetHeaders(headers).
 		SetBody(params).
 		Post(url)
-	log.Print("[Post]", resp.String())
+	// log.Print("[Post]", resp.String())
 
 	if inter != nil {
 		err = json.Unmarshal(resp.Body(), &inter)
@@ -63,7 +63,7 @@ func PostForm(url string, headers map[string]string, params map[string]string, i
 	if err != nil {
 		log.Print("[PostForm]", err, "[url]", url)
 	}
-	log.Print("[PostForm]",resp.String())
+	// log.Print("[PostForm]",resp.String())
 
 	if inter != nil {
 		err = json.Unmarshal(resp.Body(), &inter)
