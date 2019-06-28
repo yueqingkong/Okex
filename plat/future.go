@@ -126,7 +126,7 @@ func (future OKexFuture) Times(symbol string) FutureTimes {
  * direct (short|long)
  * time 倍数(10|20)
  */
-func (future OKexFuture) SetTimes(symbol string,id string,direct string,time int32) FutureTimes {
+func (future OKexFuture) SetTimes(symbol string, id string, direct string, time int32) FutureTimes {
 	var api = fmt.Sprintf("/api/futures/v3/accounts/%s/leverage", symbol)
 	var url = okApi + api
 
@@ -267,7 +267,7 @@ func (future OKexFuture) Trades(symbol string) Trades {
 // 合约历史记录不能回溯,只能拉取最近200条(cnmd,K线数据可能不完整)
 // 60   180  300  900   1800  3600  7200  14400 21600 43200  86400 604800
 // 1min 3min 5min 15min 30min 1hour 2hour 4hour 6hour 12hour 1day  1week
-func (future OKexFuture) Candle(instrumentId string, interval string, st time.Time) FutureCandles {
+func (future OKexFuture) Candle(instrumentId string, interval string, st time.Time) (FutureCandles, error) {
 	var api string
 
 	var gran int32
@@ -275,7 +275,7 @@ func (future OKexFuture) Candle(instrumentId string, interval string, st time.Ti
 		gran = 300
 	} else if interval == "30m" {
 		gran = 1800
-	}else if interval == "1h" {
+	} else if interval == "1h" {
 		gran = 21600
 	} else if interval == "6h" {
 		gran = 21600
@@ -310,8 +310,8 @@ func (future OKexFuture) Candle(instrumentId string, interval string, st time.Ti
 	var url = okApi + api
 
 	var candles FutureCandles
-	Get(url, future.header("get", api, nil), &candles)
-	return candles
+	err := Get(url, future.header("get", api, nil), &candles)
+	return candles, err
 }
 
 // 获取指数信息
