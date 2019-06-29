@@ -286,26 +286,14 @@ func (future OKexFuture) Candle(instrumentId string, interval string, st time.Ti
 	}
 
 	if st.IsZero() {
-		api = fmt.Sprintf("/api/futures/v3/instruments/%s/candles?granularity=%d", instrumentId, gran)
-	} else {
-		//获取200条k线
-		if interval == "5m" {
-			st = st.Add(time.Duration(5) * time.Minute * -200)
-		} else if interval == "30m" {
-			st = st.Add(time.Duration(30) * time.Minute * -200)
-		} else if interval == "1h" {
-			st = st.Add(time.Duration(1) * time.Hour * -200)
-		} else if interval == "6h" {
-			st = st.Add(time.Duration(6) * time.Hour * -200)
-		} else if interval == "12h" {
-			st = st.Add(time.Duration(12) * time.Hour * -200)
-		} else if interval == "1d" {
-			st = st.Add(time.Duration(24) * time.Hour * -200)
+		var err error
+		st, err = time.Parse("2006-01-02 15:04:05", "2017-08-17 00:00:00")
+		if err != nil {
+			log.Print(err)
 		}
-
-		start := IsoTime(st)
-		api = fmt.Sprintf("/api/futures/v3/instruments/%s/candles?start=%s&granularity=%d", instrumentId, start, gran)
 	}
+	start := IsoTime(st)
+	api = fmt.Sprintf("/api/futures/v3/instruments/%s/candles?start=%s&granularity=%d", instrumentId, start, gran)
 
 	var url = okApi + api
 
