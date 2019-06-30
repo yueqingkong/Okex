@@ -395,7 +395,7 @@ type FutureOrderInfo struct {
 	Leverage     string    `json:"leverage"`
 }
 
-type Trades []struct {
+type Trades struct {
 	TradeID   string    `json:"trade_id"`
 	Side      string    `json:"side"`
 	Price     string    `json:"price"`

@@ -254,13 +254,13 @@ func (future OKexFuture) Ticker(symbol string) FutureTicker {
 }
 
 // 获取成交数据
-func (future OKexFuture) Trades(symbol string) Trades {
-	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/trades", symbol)
+func (future OKexFuture) Trades(symbol string,limit int32) ([]Trades, error) {
+	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/trades?limit=%d", symbol,limit)
 	var url = okApi + api
 
-	var trades Trades
-	Get(url, future.header("get", api, nil), &trades)
-	return trades
+	var trades []Trades
+	err := Get(url, future.header("get", api, nil), &trades)
+	return trades, err
 }
 
 // 获取K线数据
