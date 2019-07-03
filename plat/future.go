@@ -254,8 +254,8 @@ func (future OKexFuture) Ticker(symbol string) FutureTicker {
 }
 
 // 获取成交数据
-func (future OKexFuture) Trades(symbol string,limit int32) ([]Trades, error) {
-	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/trades?limit=%d", symbol,limit)
+func (future OKexFuture) Trades(symbol string, limit int32) ([]Trades, error) {
+	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/trades?limit=%d", symbol, limit)
 	var url = okApi + api
 
 	var trades []Trades
@@ -276,7 +276,11 @@ func (future OKexFuture) Candle(instrumentId string, interval string, st time.Ti
 	} else if interval == "30m" {
 		gran = 1800
 	} else if interval == "1h" {
-		gran = 21600
+		gran = 3600
+	} else if interval == "2h" {
+		gran = 7200
+	} else if interval == "4h" {
+		gran = 14400
 	} else if interval == "6h" {
 		gran = 21600
 	} else if interval == "12h" {
