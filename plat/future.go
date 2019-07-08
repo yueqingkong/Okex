@@ -82,33 +82,33 @@ func (future OKexFuture) Position() FuturePosition {
 }
 
 // 单个合约持仓信息
-func (future OKexFuture) InstrumenPosition(instrumenid string) FutureInstrumentPosition {
+func (future OKexFuture) InstrumenPosition(instrumenid string) (FutureInstrumentPosition, error) {
 	var api = fmt.Sprintf("/api/futures/v3/%s/position", instrumenid)
 	var url = okApi + api
 
 	var position FutureInstrumentPosition
-	Get(url, future.header("get", api, nil), &position)
-	return position
+	err := Get(url, future.header("get", api, nil), &position)
+	return position, err
 }
 
 // 所有币种合约账户信息
-func (future OKexFuture) Account() FutureAccount {
+func (future OKexFuture) Account() (FutureAccount, error) {
 	var api = "/api/futures/v3/accounts"
 	var url = okApi + api
 
 	var account FutureAccount
-	Get(url, future.header("get", api, nil), &account)
-	return account
+	err := Get(url, future.header("get", api, nil), &account)
+	return account, err
 }
 
 // 单个币种合约账户信息
-func (future OKexFuture) SymbolAccount(symbol string) FutureSymbolAccount {
+func (future OKexFuture) SymbolAccount(symbol string) (FutureSymbolAccount, error) {
 	var api = fmt.Sprintf("/api/futures/v3/accounts/%s", symbol)
 	var url = okApi + api
 
 	var account FutureSymbolAccount
-	Get(url, future.header("get", api, nil), &account)
-	return account
+	err := Get(url, future.header("get", api, nil), &account)
+	return account, err
 }
 
 // 获取合约币种杠杆倍数
@@ -142,17 +142,17 @@ func (future OKexFuture) SetTimes(symbol string, id string, direct string, time 
 }
 
 // 账单流水查询
-func (future OKexFuture) Ledger(symbol string) FutureLedger {
+func (future OKexFuture) Ledger(symbol string) (FutureLedger, error) {
 	var api = fmt.Sprintf("/api/futures/v3/accounts/%s/ledger", symbol)
 	var url = okApi + api
 
 	var leger FutureLedger
-	Post(url, future.header("get", api, nil), nil, &leger)
-	return leger
+	err := Post(url, future.header("get", api, nil), nil, &leger)
+	return leger, err
 }
 
 // type(1:开多2:开空3:平多4:平空)
-func (future OKexFuture) Order(symbol string, ordertype int, price float32, size int, times int) FutureOrder {
+func (future OKexFuture) Order(symbol string, ordertype int, price float32, size int, times int) (FutureOrder, error) {
 	var api = "/api/futures/v3/order"
 	var url = okApi + api
 
@@ -164,12 +164,12 @@ func (future OKexFuture) Order(symbol string, ordertype int, price float32, size
 	param["leverage"] = times
 
 	var order FutureOrder
-	Post(url, future.header("post", api, param), param, &order)
-	return order
+	err := Post(url, future.header("post", api, param), param, &order)
+	return order, err
 }
 
 // 撤销指定订单
-func (future OKexFuture) CancelOrder(symbol string, orderid string) FutureCancel {
+func (future OKexFuture) CancelOrder(symbol string, orderid string) (FutureCancel, error) {
 	var api = fmt.Sprintf("/api/futures/v3/cancel_order/%s/%s", symbol, orderid)
 	var url = okApi + api
 
@@ -178,8 +178,8 @@ func (future OKexFuture) CancelOrder(symbol string, orderid string) FutureCancel
 	param["order_id"] = orderid
 
 	var cancel FutureCancel
-	Post(url, future.header("post", api, param), param, &cancel)
-	return cancel
+	err := Post(url, future.header("post", api, param), param, &cancel)
+	return cancel, err
 }
 
 // 获取订单列表
