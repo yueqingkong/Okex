@@ -310,7 +310,7 @@ func (future OKexFuture) Candle(instrumentId string, interval string, st time.Ti
 func (future OKexFuture) Index(symbol string) FutureIndex {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/index", symbol)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var index FutureIndex
 	Get(url, future.header("get", api, nil), &index)
@@ -321,7 +321,7 @@ func (future OKexFuture) Index(symbol string) FutureIndex {
 func (future OKexFuture) Rate() FutureRate {
 	var api = "/api/futures/v3/rate"
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var rate FutureRate
 	Get(url, future.header("get", api, nil), &rate)
@@ -332,7 +332,7 @@ func (future OKexFuture) Rate() FutureRate {
 func (future OKexFuture) EstimatedPrice(symbol string) FutureEstimatedPrice {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/estimated_price", symbol)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var price FutureEstimatedPrice
 	Get(url, future.header("get", api, nil), &price)
@@ -343,7 +343,7 @@ func (future OKexFuture) EstimatedPrice(symbol string) FutureEstimatedPrice {
 func (future OKexFuture) OpenInterest(symbol string) FutureOpenInterest {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/open_interest", symbol)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var interest FutureOpenInterest
 	Get(url, future.header("get", api, nil), &interest)
@@ -365,7 +365,7 @@ func (future OKexFuture) PriceLimit(symbol string) (FuturePriceLimit, error) {
 func (future OKexFuture) MarkPrice(symbol string) FutureMarkPrice {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/mark_price", symbol)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var price FutureMarkPrice
 	Get(url, future.header("get", api, nil), &price)
@@ -376,7 +376,7 @@ func (future OKexFuture) MarkPrice(symbol string) FutureMarkPrice {
 func (future OKexFuture) Liquidation(symbol string, status int) FutureLiquidation {
 	var api = fmt.Sprintf("/api/futures/v3/instruments/%s/liquidation?status=%d", symbol, status)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var liquidation FutureLiquidation
 	Get(url, future.header("get", api, nil), &liquidation)
@@ -387,7 +387,7 @@ func (future OKexFuture) Liquidation(symbol string, status int) FutureLiquidatio
 func (future OKexFuture) Holds(symbol string) FutureHold {
 	var api = fmt.Sprintf("/api/futures/v3/accounts/%s/holds", symbol)
 	var url = okApi + api
-	log.Print(url)
+	// log.Print(url)
 
 	var hold FutureHold
 	Get(url, future.header("get", api, nil), &hold)
