@@ -1,11 +1,16 @@
 package main
 
+import (
+	"github.com/yueqingkong/Okex/plat"
+	"log"
+)
+
 func main() {
 	// 现货
-	// spot:= plat.NewOKex()
+	spot:= plat.NewOKex()
 	// 初始化Key
-	// spot.InitKeys("ww","ww","w")
-	// log.Print(spot.Instruments())
+	spot.InitKeys("ww","ww","w")
+	log.Print(spot.Instruments())
 	// log.Print(spot.Depths("eth"))
 	// log.Print(spot.Tickers())
 	// log.Print(spot.Depths("btc"))
