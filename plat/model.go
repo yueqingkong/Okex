@@ -349,11 +349,10 @@ type FutureLedger []struct {
 }
 
 type FutureOrder struct {
-	ClientOid     string `json:"client_oid"`
-	ErrorCode     int    `json:"error_code"`
-	ErrorMesssage string `json:"error_messsage"`
-	OrderID       string `json:"order_id"`
-	Result        bool   `json:"result"`
+	Result       bool   `json:"result"`
+	ErrorMessage string `json:"error_message"`
+	ErrorCode    string `json:"error_code"`
+	OrderID      string `json:"order_id"`
 }
 
 type FutureCancel struct {

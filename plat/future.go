@@ -46,6 +46,16 @@ func NewOKexFuture() OKexFuture {
 	return OKexFuture{}
 }
 
+
+/**
+ * 初始化 Key
+ */
+func (future OKexFuture) InitKeys(api string, secret string, phrase string) {
+	ApiKey = api
+	SecretKey = secret
+	Passphrase = phrase
+}
+
 func (future OKexFuture) header(request string, path string, body interface{}) map[string]string {
 	var paramString string
 	if body != nil {
@@ -152,7 +162,7 @@ func (future OKexFuture) Ledger(symbol string) (FutureLedger, error) {
 }
 
 // type(1:开多2:开空3:平多4:平空)
-func (future OKexFuture) Order(symbol string, ordertype int, price float32, size int, times int) (FutureOrder, error) {
+func (future OKexFuture) Order(symbol string, ordertype int, price float32, size int) (FutureOrder, error) {
 	var api = "/api/futures/v3/order"
 	var url = okApi + api
 
@@ -161,7 +171,7 @@ func (future OKexFuture) Order(symbol string, ordertype int, price float32, size
 	param["type"] = ordertype
 	param["price"] = price
 	param["size"] = size
-	param["leverage"] = times
+	param["match_price"] = 1
 
 	var order FutureOrder
 	err := Post(url, future.header("post", api, param), param, &order)

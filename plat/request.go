@@ -8,7 +8,7 @@ import (
 )
 
 // GET
-func Get(url string, headers map[string]string, inter interface{}) error{
+func Get(url string, headers map[string]string, inter interface{}) error {
 	if headers == nil {
 		headers = make(map[string]string)
 		headers["Content-Type"] = "application/x-www-form-urlencoded"
@@ -27,7 +27,7 @@ func Get(url string, headers map[string]string, inter interface{}) error{
 }
 
 // POST
-func Post(url string, headers map[string]string, params interface{}, inter interface{}) error{
+func Post(url string, headers map[string]string, params interface{}, inter interface{}) error {
 	if headers == nil {
 		headers = make(map[string]string)
 		headers["Content-Type"] = "application/x-www-form-urlencoded"
@@ -37,19 +37,18 @@ func Post(url string, headers map[string]string, params interface{}, inter inter
 		SetHeaders(headers).
 		SetBody(params).
 		Post(url)
-	// log.Print("[Post]", resp.String())
 
 	if inter != nil {
 		err = json.Unmarshal(resp.Body(), &inter)
 		if err != nil {
-			log.Print("[net][PostForm]", err, url)
+			log.Print("[net][PostForm]", resp.String(), err, url)
 		}
 	}
 	return err
 }
 
 // POST 表单
-func PostForm(url string, headers map[string]string, params map[string]string, inter interface{}) error{
+func PostForm(url string, headers map[string]string, params map[string]string, inter interface{}) error {
 	if headers == nil {
 		headers = make(map[string]string)
 		headers["Content-Type"] = "application/x-www-form-urlencoded"

@@ -4,8 +4,7 @@ func main() {
 	// 现货
 	// spot:= plat.NewOKex()
 	// 初始化Key
-	// spot.InitKeys("123","www","wwwww")
-
+	// spot.InitKeys("ww","ww","w")
 	// log.Print(spot.Instruments())
 	// log.Print(spot.Depths("eth"))
 	// log.Print(spot.Tickers())
@@ -23,6 +22,8 @@ func main() {
 
 	// 合约
 	// future:= plat.NewOKexFuture()
+	// log.Print(future.Instruments())
+	// log.Print(future.Order("BTC-USD-190927",3,10990,1))
 	// log.Print(future.Position())
 	// log.Print(future.InstrumenPosition("EOS-USD-190628"))
 	// log.Print(future.Account())
