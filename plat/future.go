@@ -162,7 +162,7 @@ func (future OKexFuture) Ledger(symbol string) (FutureLedger, error) {
 }
 
 // type(1:开多2:开空3:平多4:平空)
-func (future OKexFuture) Order(symbol string, ordertype int, price float32, size int) (FutureOrder, error) {
+func (future OKexFuture) Order(symbol string, ordertype int32, price float32, size int32) (FutureOrder, error) {
 	var api = "/api/futures/v3/order"
 	var url = okApi + api
 
