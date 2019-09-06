@@ -1,4 +1,4 @@
-module Okex
+module github.com/yueqingkong/Okex
 
 go 1.12
 
