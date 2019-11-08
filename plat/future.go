@@ -164,6 +164,7 @@ func (future OKexFuture) Ledger(symbol string) (FutureLedger, error) {
 /**
  * type(1:开多2:开空3:平多4:平空)
  * order_type: 0：普通委托（order type不填或填0都是普通委托） 1：只做Maker（Post only） 2：全部成交或立即取消（FOK） 3：立即成交并取消剩余（IOC）
+ * match_price: 是否以对手价下单(0:不是 1:是)，默认为0，当取值为1时。price字段无效，当以对手价下单，order_type只能选择0:普通委托
  */
 func (future OKexFuture) Order(symbol string, _type int32,ordertype int32, price float32, size int32,match_price int32) (FutureOrder, error) {
 	var api = "/api/futures/v3/order"

@@ -113,15 +113,17 @@ type FutureFill struct {
 }
 
 type FutureInstrument struct {
-	InstrumentID    string `json:"instrument_id"`
-	UnderlyingIndex string `json:"underlying_index"`
-	QuoteCurrency   string `json:"quote_currency"`
-	TickSize        string `json:"tick_size"`
-	ContractVal     string `json:"contract_val"`
-	Listing         string `json:"listing"`
-	Delivery        string `json:"delivery"`
-	TradeIncrement  string `json:"trade_increment"`
-	Alias           string `json:"alias"`
+	InstrumentID        string `json:"instrument_id"`
+	UnderlyingIndex     string `json:"underlying_index"`
+	QuoteCurrency       string `json:"quote_currency"`
+	TickSize            string `json:"tick_size"`
+	ContractVal         string `json:"contract_val"`
+	Listing             string `json:"listing"`
+	Delivery            string `json:"delivery"`
+	TradeIncrement      string `json:"trade_increment"`
+	Alias               string `json:"alias"`
+	IsInverse           string `json:"is_inverse"`
+	ContractValCurrency string `json:"contract_val_currency"`
 }
 
 type FutureDepth struct {
